@@ -97,10 +97,7 @@ namespace ConsoleApp1
 
         public void MakeSound()
         {
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
-
-            player.SoundLocation = "person.wav";
-            player.Play();
+            Utils.PlaySound( "person.wav");
         }
     }
 
@@ -124,10 +121,7 @@ namespace ConsoleApp1
 
         public virtual void MakeSound()
         {
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
-
-            player.SoundLocation = "animal.wav";
-            player.Play();
+           Utils.PlaySound( "animal.wav");
         }
     }
 
@@ -152,17 +146,7 @@ namespace ConsoleApp1
 
         public override void MakeSound()
         {
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
-
-            player.SoundLocation = "dog.wav";
-            player.Play();
-
-
-            //System.Media.SoundPlayer(string wav).Play();
-            //WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
-
-            //wplayer.URL = "dog.mp3";
-            //wplayer.Controls.Play();
+            Utils.PlaySound("dog.wav");
         }
     }
 
@@ -188,5 +172,15 @@ namespace ConsoleApp1
     public interface IMakeSound
     {
         void MakeSound();
+    }
+
+    public static class Utils
+    {
+        public static void PlaySound(string path)
+        {
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+            player.SoundLocation = path;
+            player.PlaySync();
+        }
     }
 }
