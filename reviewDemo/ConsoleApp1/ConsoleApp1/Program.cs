@@ -31,11 +31,11 @@ namespace ConsoleApp1
 
 
 
-            int[] nums = new int[] {2,7,4,8,2,9,1 };
+            int[] nums = new int[] { 2, 7, 4, 8, 2, 9, 1 };
 
             foreach (var num in nums)
             {
-                Console.Write(num+", ");
+                Console.Write(num + ", ");
             }
             Console.WriteLine();
             Array.Sort(nums);
@@ -82,7 +82,7 @@ namespace ConsoleApp1
 
         public override string ToString()
         {
-            return $"{Name},{Weight}, does{(HasBone?" ":" not ")}have a bone";
+            return $"{Name},{Weight}, does{(HasBone ? " " : " not ")}have a bone";
         }
     }
 
@@ -103,5 +103,10 @@ namespace ConsoleApp1
         {
             return $"{Name},{Weight},does{(HasBall ? " " : " not ")}have a ball";
         }
+    }
+
+    public interface IMakeSound
+    {
+         void MakeSound();
     }
 }
