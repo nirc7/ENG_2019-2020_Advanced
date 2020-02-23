@@ -44,10 +44,67 @@ namespace ConsoleApp1
                 Console.Write(num + ", ");
             }
 
+
+            Dog d = new Dog(12, "DoogyDog", true);
+            d.MakeSound();
+
+            IMakeSound[] ims = new IMakeSound[] {
+                new Person(){ Name="avi", ID=7},
+                new Dog(7,"asd",false)
+             };
+
+            foreach (var mk in ims)
+            {
+                mk.MakeSound();
+            }
+
+            //if (ims[0] is Dog)
+            //{
+            //    ((Dog)ims[0]).HasBone = true;
+            //    ((Dog)ims[0]).??? = true;
+            //    ((Dog)ims[0]).??? = true;
+            //}
+
+            //Dog d2 = ims[0] as Dog;
+            //if (d2 != null)
+            //{
+            //    d2.HasBone = true;
+            //}
+
         }
     }
 
-    abstract class Animal : Object, IComparable
+    class Person : IMakeSound
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+
+        public Person()
+        {
+
+        }
+
+        public Person(int i, string n)
+        {
+            Name = n;
+            ID = i;
+        }
+
+        public override string ToString()
+        {
+            return $"{ID},{ Name}";
+        }
+
+        public void MakeSound()
+        {
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+
+            player.SoundLocation = "person.wav";
+            player.Play();
+        }
+    }
+
+    abstract class Animal : Object, IComparable, IMakeSound
     {
         public int Weight { get; set; }
         public string Name { get; set; }
@@ -64,9 +121,17 @@ namespace ConsoleApp1
         {
             return Weight - ((Animal)obj).Weight;
         }
+
+        public virtual void MakeSound()
+        {
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+
+            player.SoundLocation = "animal.wav";
+            player.Play();
+        }
     }
 
-    class Dog : Animal
+    class Dog : Animal, IMakeSound
     {
         public bool HasBone { get; set; }
 
@@ -83,6 +148,21 @@ namespace ConsoleApp1
         public override string ToString()
         {
             return $"{Name},{Weight}, does{(HasBone ? " " : " not ")}have a bone";
+        }
+
+        public override void MakeSound()
+        {
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+
+            player.SoundLocation = "dog.wav";
+            player.Play();
+
+
+            //System.Media.SoundPlayer(string wav).Play();
+            //WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
+
+            //wplayer.URL = "dog.mp3";
+            //wplayer.Controls.Play();
         }
     }
 
@@ -107,6 +187,6 @@ namespace ConsoleApp1
 
     public interface IMakeSound
     {
-         void MakeSound();
+        void MakeSound();
     }
 }
