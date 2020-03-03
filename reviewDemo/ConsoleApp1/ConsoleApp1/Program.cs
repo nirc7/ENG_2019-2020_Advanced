@@ -53,6 +53,8 @@ namespace ConsoleApp1
                 new Dog(7,"asd",false)
              };
 
+
+
             foreach (var mk in ims)
             {
                 mk.MakeSound();
