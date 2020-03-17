@@ -14,7 +14,7 @@ namespace WindowsFormsApp1
     public partial class Form1 : Form
     {
 
-        string conStr = @"Data Source=LAB-30-400;Initial Catalog=UsersDB;Integrated Security=True";
+        string conStr = @"Data Source=E440\SQLEXPRESS;Initial Catalog=UsersDB;Integrated Security=True";
         SqlConnection con = null;
         SqlCommand comm = null;
 
