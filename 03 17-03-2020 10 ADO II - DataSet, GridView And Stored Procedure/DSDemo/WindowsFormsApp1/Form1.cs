@@ -53,7 +53,8 @@ namespace WindowsFormsApp1
                     table.Rows[i]["Family"] = txtFamily.Text;
                     break;
                 }
-            }            
+            }
+            UpdateDBFromDS();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -65,6 +66,7 @@ namespace WindowsFormsApp1
                     table.Rows[i].Delete();
                 }
             }
+            UpdateDBFromDS();
         }
 
         private void btnUpdateDBFromDS_Click(object sender, EventArgs e)
